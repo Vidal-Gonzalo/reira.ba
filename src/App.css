@@ -1,7 +1,52 @@
-.navbar .navbar-brand{
-    font-size: 20px;
+* {
+    font-family: 'Comfortaa', cursive; /*Hasta que encuentre una nueva fuente*/
 }
 
-.navbar-nav li{
+.navbar {
+    background-color: #a4508b;
+    background-image: linear-gradient(326deg, #a4508b 0%, #5f0a87 74%);    
+}
+
+.navbar .navbar-brand {
+    font-size: 20px;
+    color: #FFF;
+}
+
+.navbar-nav li a {
     font-size: 18px;
+    color: #FFF;
+    transition: all 500ms;
+}
+
+.navbar-nav li a:hover {
+    color: #FFF;
+    transform: scale(1.1, 1.1)
+}
+
+.cart{
+    background-color: #a4508b;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrap{
+    text-align: center;
+    margin-top: 50px;
+    padding-bottom: 50px;
+    height: 60vh;
+    font-size: 30px;
+    background-color: rgb(236, 233, 233);
+    box-shadow: 5px 5px 15px 12px #ccc;
+}
+
+.greeting {
+    color: #a4508b
+}
+
+.no-greeting {
+    color: red;
 }
