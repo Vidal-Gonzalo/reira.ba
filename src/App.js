@@ -1,6 +1,9 @@
 import './App.css';
+import ItemCount from './components/ItemCount';
 import Navbar from './components/Navbar';
 import ItemListContainer from './containers/ItemListContainer';
+
+
 
 function App() {
   return (
@@ -9,7 +12,8 @@ function App() {
         <Navbar />
       </header>
       <section id="presentation">
-        <ItemListContainer greeting="¡Hola!" />
+        <ItemListContainer greeting="Hola!" />
+        <ItemCount stock={5} initial={0} />
       </section>
     </>
   );
