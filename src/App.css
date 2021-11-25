@@ -31,10 +31,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .wrap{
-    text-align: center;
     margin-top: 30px;
     padding-bottom: 50px;
     height: 60vh;
@@ -77,4 +77,18 @@
     padding: 20px;
     border-radius: 15px;
     margin-bottom: 30px;
+}
+
+.item-list {
+    list-style:none;
+    display: flex;
+    flex-direction: row;
+}
+
+.card {
+    margin: 50px;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

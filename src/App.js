@@ -12,7 +12,7 @@ function App() {
         <Navbar />
       </header>
       <section id="presentation">
-        <ItemListContainer greeting="Hola!" />
+        <ItemListContainer />
         <ItemCount stock={5} initial={0} />
       </section>
     </>
