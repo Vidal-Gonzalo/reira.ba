@@ -34,14 +34,7 @@
     flex-direction: column;
 }
 
-.wrap{
-    margin-top: 30px;
-    padding-bottom: 50px;
-    height: 60vh;
-    font-size: 30px;
-    background-color: rgb(236, 233, 233);
-    box-shadow: 5px 5px 15px 12px #ccc;
-}
+
 
 .greeting {
     color: #a4508b
@@ -74,21 +67,57 @@
     font-weight: bold;
     margin-top: 15px;
     background-color: #08cf08;
-    padding: 20px;
+    padding: 10px;
     border-radius: 15px;
-    margin-bottom: 30px;
+}
+
+.item {
+    text-align: center;
+}
+
+.item img {
+    margin-bottom: 10px;
+    border-radius: 10px;
 }
 
 .item-list {
-    list-style:none;
+    margin-top: 30px;
+    background-color: rebeccapurple;
     display: flex;
-    flex-direction: row;
+    border-radius: 10px;
 }
 
-.card {
-    margin: 50px;
-    padding: 50px;
+.wrap {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    padding: 10px;
+    margin: 30px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.item-detail-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    height: calc(100vh - 30vh);
+    margin-top: 30px;
+    border-radius: 20px;
+}
+
+.details {
+    background-color: rebeccapurple;
+    padding: 50px;
+    text-align: center;
 }

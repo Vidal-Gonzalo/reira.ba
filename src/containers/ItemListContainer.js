@@ -1,38 +1,56 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
+import getItems from '../services/getItems';
 import ItemList from '../components/ItemList'
-import Axios from 'axios';
 
 export default function ItemListContainer() {
 
+    const { categoryId } = useParams();
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(false)
 
     useEffect(() => {
-        const fetchData = async () => {
+
+        async function loadItems() {
             try {
-                const response = await Axios.get("assets/items.json")
-                setItems(response.data);
-            } catch (err) {
-                setError(true)
+                if (categoryId !== undefined) {
+                    const response = await getItems.getCategoryItems(categoryId);
+                    setLoading(false)
+                    setItems(response.data)
+                } else {
+                    const allItems = await getItems.getAllItems();
+                    setLoading(false);
+                    setItems(allItems.data)
+                }
+            }
+            catch (error) {
+                setError(true);
+                setLoading(false);
+                console.log(error)
             }
         }
 
-        setTimeout(() => {
-            fetchData().then(setLoading(false))
-        }, 2000);
-    })
+        loadItems();
+
+    }, [categoryId])
 
 
     return (
-        <div className="container">
-            <div className="wrap center">
-                {error ? <p>Ha habido un error</p> : null}
-                <div>
-                    {loading ? <p>Cargando...</p> : <ItemList items={items} />}
+        <section id="items">
+            <div className="container">
+                <div className="center">
+                    {error ? <p>Ha habido un error</p> : null}
+                    <div>
+                        {!loading ? <>
+                            <div className="item-list">
+                                <ItemList items={items} />
+                            </div> </> :
+                            <p>Cargando...</p>}
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

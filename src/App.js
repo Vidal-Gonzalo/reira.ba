@@ -1,22 +1,27 @@
 import './App.css';
-import ItemCount from './components/ItemCount';
 import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ItemDetailPage from './pages/ItemDetailPage';
 import ItemListContainer from './containers/ItemListContainer';
-import ItemDetailContainer from './containers/ItemDetailContainer';
-
 
 function App() {
   return (
-    <>
+    <Router>
       <header>
         <Navbar />
       </header>
-      <section id="presentation">
-        <ItemListContainer />
-        <ItemCount stock={5} initial={0} />
-        <ItemDetailContainer/>
-      </section>
-    </>
+      <Switch>
+        <Route exact path="/">
+          <ItemListContainer/>
+        </Route>
+        <Route exact path="/category/:categoryId">
+          <ItemListContainer/>
+        </Route>
+        <Route exact path="/item/:id">
+          <ItemDetailPage/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
