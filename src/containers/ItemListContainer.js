@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import getItems from '../services/getItems';
 import ItemList from '../components/ItemList'
+import Loader from '../components/Loader';
 
 export default function ItemListContainer() {
 
@@ -13,26 +14,30 @@ export default function ItemListContainer() {
     useEffect(() => {
 
         async function loadItems() {
+            
+            setLoading(true);
+            
             try {
                 if (categoryId !== undefined) {
                     const response = await getItems.getCategoryItems(categoryId);
-                    setLoading(false)
-                    setItems(response.data)
+                    setTimeout(() => {
+                        setLoading(false)
+                        setItems(response.data)
+                    }, 2000)
                 } else {
-                    const allItems = await getItems.getAllItems();
-                    setLoading(false);
-                    setItems(allItems.data)
+                    const response = await getItems.getAllItems();
+                    setTimeout(() => {
+                        setLoading(false)
+                        setItems(response.data)
+                    }, 2000)
                 }
             }
             catch (error) {
                 setError(true);
                 setLoading(false);
-                console.log(error)
             }
         }
-
-        loadItems();
-
+            loadItems();
     }, [categoryId])
 
 
@@ -42,11 +47,11 @@ export default function ItemListContainer() {
                 <div className="center">
                     {error ? <p>Ha habido un error</p> : null}
                     <div>
-                        {!loading ? <>
+                        {!loading ?
                             <div className="item-list">
                                 <ItemList items={items} />
-                            </div> </> :
-                            <p>Cargando...</p>}
+                            </div> :
+                            <Loader/>}
                     </div>
                 </div>
             </div>

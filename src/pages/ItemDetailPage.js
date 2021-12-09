@@ -1,22 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import getItems from '../services/getItems';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import getItems from '../services/getItems';
 import ItemCount from '../components/ItemCount';
+import Loader from '../components/Loader';
+import { Shop } from '../context/CartContext';
 
 export default function ItemDetailPage() {
+    const { addItem, clearCart } = useContext(Shop);
     const { id } = useParams();
     const [item, setItem] = useState({ title: "", price: "", pictureUrl: "", id: 0 })
     const [bought, setBought] = useState(0);
-    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
     const history = useHistory();
 
     useEffect(() => {
         async function loadItem() {
-            try{
+            try {
                 const response = await getItems.getItem(id);
-                setItem(response.data);
+                setTimeout(() => {
+                    setItem(response.data);
+                    setLoading(false);
+                }, 2000)
             }
-            catch(err){
+            catch (err) {
                 setError(err)
             }
         }
@@ -24,34 +33,41 @@ export default function ItemDetailPage() {
         loadItem();
     }, [id])
 
-    function onAdd (quantityToAdd) {
+    const onAdd = (quantityToAdd) => {
         setBought(quantityToAdd);
-        history.push("/cart")
     }
+
+    const handlePurchase = () => {
+
+        addItem({ id: item.id, name: item.title, price: item.price, quantity: bought });
+        
+    }
+
 
     return (
         <div className="item-detail-card mt-5">
-            {!error ? <div className="details text-white">
+            {item.title !== "" ? <div className="details text-white">
                 <img src={item.pictureUrl} alt="Imagen de producto" className="mb-3" width="150" height="150" />
                 <h1>{item.title}</h1>
                 <h3>Precio: {item.price}</h3>
                 {
-                    bought <= 0 ?  <ItemCount stock={5} initial={0} onAdd={onAdd} /> : null
+                    bought <= 0 ? <ItemCount stock={5} initial={0} onAdd={onAdd} /> : <button className="btn btn-success text-white" onClick={handlePurchase}>Enviar</button>
                 }
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
 
             </div>
-                : <p>Ha habido un error</p>
+                : <Loader />
             }
         </div>
     )
 }
-
-
-
-
-// {
-//     !bought ? <button className="buy-button btn btn-info" onClick={() => setBought(true)}>Agregar al carrito</button> 
-//     : <div className="purchased"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-check" viewBox="0 0 16 16">
-//         <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
-//     </svg>¡Compra realizada con éxito!</div>
-// }

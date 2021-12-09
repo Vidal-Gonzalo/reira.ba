@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 export default function ItemCount({ stock, initial, onAdd }) {
 
     const [count, setCount] = useState(0);
-    console.log(count)
 
     return (
         <div className="container">
