@@ -6,6 +6,7 @@ import ItemListContainer from './containers/ItemListContainer';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { ShopProvider } from './context/CartContext';
+import Cart from './components/Cart';
 
 library.add(faCartShopping)
 
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route exact path="/item/:id">
             <ItemDetailPage />
+          </Route>
+          <Route exact path="/cart">
+            <Cart/>
           </Route>
         </Switch>
       </Router>

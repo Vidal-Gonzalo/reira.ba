@@ -41,6 +41,11 @@ export const ShopProvider = ({ children }) => {
 
     }
 
+    const removeItem = (id) => {
+        let itemRemoved = cart.filter(item => item.id !== id);
+        setCart(itemRemoved);
+    }
+
     const clearCart = () => {
         setCart([])
     }
@@ -50,6 +55,7 @@ export const ShopProvider = ({ children }) => {
         <Shop.Provider value={{
             cart,
             addItem,
+            removeItem,
             clearCart
         }}>
             {children}

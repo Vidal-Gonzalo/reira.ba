@@ -14,9 +14,9 @@ export default function ItemListContainer() {
     useEffect(() => {
 
         async function loadItems() {
-            
+
             setLoading(true);
-            
+
             try {
                 if (categoryId !== undefined) {
                     const response = await getItems.getCategoryItems(categoryId);

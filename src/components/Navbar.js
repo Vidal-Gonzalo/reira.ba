@@ -1,12 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import CartWidget from './CartWidget'
-import { Shop } from '../context/CartContext'
 
 export default function Navbar() {
-
-    const { cart } = useContext(Shop);
 
     return (
         <>
@@ -28,8 +25,7 @@ export default function Navbar() {
                             </li>
                         </ul>
                         <ul className="navbar-nav ms-auto">
-                            <CartWidget />
-                            <span className="ms-2 my-auto text-white">{cart.length}</span>
+                            <li><CartWidget /></li>
                         </ul>
                     </div>
                 </div>
