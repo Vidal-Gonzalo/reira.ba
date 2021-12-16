@@ -1,43 +1,40 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import getItems from '../services/getItems';
 import ItemList from '../components/ItemList'
 import Loader from '../components/Loader';
+import { db } from '../firebase/config';
+import { collection, getDocs, query, where } from 'firebase/firestore/lite';
 
 export default function ItemListContainer() {
 
     const { categoryId } = useParams();
     const [items, setItems] = useState([]);
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
 
-        async function loadItems() {
+        setLoading(true);
 
-            setLoading(true);
+        const productRef = collection(db, 'productos');
+        const q = categoryId ? query(productRef, where('category', '==', categoryId)) : productRef;
 
-            try {
-                if (categoryId !== undefined) {
-                    const response = await getItems.getCategoryItems(categoryId);
-                    setTimeout(() => {
-                        setLoading(false)
-                        setItems(response.data)
-                    }, 2000)
-                } else {
-                    const response = await getItems.getAllItems();
-                    setTimeout(() => {
-                        setLoading(false)
-                        setItems(response.data)
-                    }, 2000)
-                }
-            }
-            catch (error) {
-                setError(true);
+        try {
+            getDocs(q).then((response) => {
+                const products = response.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data()
+                })
+                );
+                setItems(products)
+            }).finally(() => {
                 setLoading(false);
-            }
+            });
         }
-            loadItems();
+        catch (error) {
+            setError(true)
+        }
+
     }, [categoryId])
 
 
@@ -51,7 +48,7 @@ export default function ItemListContainer() {
                             <div className="item-list">
                                 <ItemList items={items} />
                             </div> :
-                            <Loader/>}
+                            <Loader />}
                     </div>
                 </div>
             </div>

@@ -1,34 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useContext } from 'react'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import getItems from '../services/getItems';
 import ItemCount from '../components/ItemCount';
-import Loader from '../components/Loader';
 import { Shop } from '../context/CartContext';
 
-export default function ItemDetailPage() {
+export default function ItemDetail({ item }) {
     const { addItem } = useContext(Shop);
-    const { id } = useParams();
-    const [item, setItem] = useState({ title: "", price: "", pictureUrl: "", id: 0 })
     const [bought, setBought] = useState(0);
-    const [error, setError] = useState(false);
-
-    useEffect(() => {
-        async function loadItem() {
-            try {
-                const response = await getItems.getItem(id);
-                setTimeout(() => {
-                    setItem(response.data);
-                }, 2000)
-            }
-            catch (err) {
-                setError(err)
-            }
-        }
-
-        loadItem();
-    }, [id])
 
     const onAdd = (quantityToAdd) => {
         setBought(quantityToAdd);
@@ -40,12 +18,9 @@ export default function ItemDetailPage() {
 
     }
 
-
     return (
-        <div className="item-detail-card mt-5">
-            {error ? <p>Ha habido un error</p> : null}
-            {item.title !== "" ? <div className="details text-white">
-                <img src={item.pictureUrl} alt="Imagen de producto" className="mb-3" width="150" height="150" />
+        <div className='details text-white'>
+            <img src={item.pictureUrl} alt="Imagen de producto" className="mb-3" width="150" height="150" />
                 <h1>{item.title}</h1>
                 <h3>Precio: {item.price}</h3>
                 {
@@ -62,10 +37,6 @@ export default function ItemDetailPage() {
                     draggable
                     pauseOnHover
                 />
-
-            </div>
-                : <Loader />
-            }
         </div>
     )
 }

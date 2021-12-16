@@ -1,12 +1,12 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import ItemDetailPage from './pages/ItemDetailPage';
 import ItemListContainer from './containers/ItemListContainer';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { ShopProvider } from './context/CartContext';
 import Cart from './components/Cart';
+import ItemDetailContainer from './containers/ItemDetailContainer';
 
 library.add(faCartShopping)
 
@@ -25,7 +25,7 @@ function App() {
             <ItemListContainer />
           </Route>
           <Route exact path="/item/:id">
-            <ItemDetailPage />
+            <ItemDetailContainer/>
           </Route>
           <Route exact path="/cart">
             <Cart/>

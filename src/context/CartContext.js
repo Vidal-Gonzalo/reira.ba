@@ -33,6 +33,7 @@ export const ShopProvider = ({ children }) => {
         if (cart.some((cart) => cart.name === item.name)) {
             setRepeatedItem(true);
             notifyRepeatedItem();
+            console.log(repeatedItem);
         } else {
             setRepeatedItem(false);
             notifySuccess();
