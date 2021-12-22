@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Shop } from '../context/CartContext';
 
 export default function Cart() {
@@ -36,9 +36,10 @@ export default function Cart() {
                         })
                         }
                     </tbody>
-                    <tfoot>
+                    <tfoot> 
                         <tr align="center">
-                            <td class='right' colSpan={4}><button onClick={clearCart} className='btn btn-danger'>Limpiar carrito</button></td>
+                            <td className="right" colSpan={1}><button onClick={clearCart} className='btn btn-danger'>Limpiar carrito</button></td>
+                            <td className="right" colSpan={3}><Link to='/checkout' className='btn btn-success'>Terminar compra</Link></td>
                         </tr>
                     </tfoot>
                 </table>}

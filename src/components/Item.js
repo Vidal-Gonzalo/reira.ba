@@ -12,7 +12,7 @@ export default function Item({ item }) {
         <div className="item">
             <img src={item.pictureUrl} alt="Imagen de producto" width="150" height="100"/>
             <h3 className="title">{item.title}</h3>
-            <p className="price">{item.price}</p>
+            <p className="price">${item.price}</p>
             <button className="btn btn-primary" onClick={() => handleClick(item.id)}>Ver detalle de producto</button>
         </div>
     )

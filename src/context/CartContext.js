@@ -47,6 +47,10 @@ export const ShopProvider = ({ children }) => {
         setCart(itemRemoved);
     }
 
+    const totalPrice = () => {
+        return cart.reduce((acc, prod) => acc + prod.price * prod.quantity, 0)
+    }
+
     const clearCart = () => {
         setCart([])
     }
@@ -57,6 +61,7 @@ export const ShopProvider = ({ children }) => {
             cart,
             addItem,
             removeItem,
+            totalPrice,
             clearCart
         }}>
             {children}
