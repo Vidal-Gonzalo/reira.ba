@@ -1,0 +1,9 @@
+.items-content {
+  text-align: center;
+}
+
+.item-list {
+  margin-top: 30px;
+  display: flex;
+  border-radius: 10px;
+}

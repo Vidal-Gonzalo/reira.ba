@@ -1,0 +1,10 @@
+.item {
+  text-align: center;
+  -webkit-animation: appear 2.5s linear infinite;
+  animation: appear 2.5s ease;
+}
+
+.item img {
+  margin-bottom: 10px;
+  border-radius: 10px;
+}

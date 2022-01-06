@@ -1,0 +1,22 @@
+.wrap-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  margin: auto;
+}
+
+.buttons span {
+  font-size: 25px;
+}
+
+.buy-button {
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 15px;
+}

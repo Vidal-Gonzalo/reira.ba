@@ -1,0 +1,33 @@
+.wrap-table {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-radius: 20px;
+  padding: 50px;
+  width: 70%;
+  background-color: #a4508b;
+  color: #fff;
+}
+
+thead th {
+  border-bottom: 2px solid #dedede;
+}
+
+td {
+  border-bottom: 1px solid #dedede;
+}
+
+td img {
+  border-radius: 50%;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 1rem;
+}

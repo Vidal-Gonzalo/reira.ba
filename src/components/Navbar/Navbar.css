@@ -1,0 +1,20 @@
+.navbar {
+  background-color: #fff;
+  box-shadow: 1px 1px 5px 1px rgb(179, 172, 172);
+}
+
+.navbar .navbar-brand {
+  font-size: 30px;
+  color: #000;
+}
+
+.navbar-nav li a {
+  font-size: 22px;
+  color: #000;
+  transition: all 500ms;
+}
+
+.navbar-nav li a:hover {
+  color: #000;
+  transform: scale(1.1, 1.1);
+}
