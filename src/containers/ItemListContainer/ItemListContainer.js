@@ -44,7 +44,11 @@ export default function ItemListContainer() {
           <div className="center">
             {error ? <p>Ha habido un error</p> : null}
             <div className="items-content mt-5">
-              <h2>Nuestros productos</h2>
+              {categoryId ? (
+                <h2>Nuestros {categoryId}</h2>
+              ) : (
+                <h2>Nuestros productos</h2>
+              )}
               <hr />
               {!loading ? (
                 <div className="item-list">

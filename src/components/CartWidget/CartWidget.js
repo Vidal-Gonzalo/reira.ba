@@ -11,6 +11,11 @@ export default function CartWidget() {
     <>
       <ul className="cart-widget">
         <li className="nav-item my-auto ms-3">
+          <NavLink className="nav-link" to={`/catalog`}>
+            Catálogo
+          </NavLink>
+        </li>
+        <li className="nav-item my-auto ms-3">
           <NavLink className="nav-link" to={`/category/stickers`}>
             Stickers
           </NavLink>

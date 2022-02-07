@@ -1,5 +1,5 @@
 import React from "react";
-import ItemListContainer from "../../containers/ItemListContainer/ItemListContainer";
+import { Link } from "react-router-dom";
 import "./Home.css";
 
 export default function Home() {
@@ -12,13 +12,12 @@ export default function Home() {
             <p className="home-paragraph">
               Hacemos stickers a pedido junto con impresiones de álbumes
             </p>
-            <a href="#items" className="btn btn-primary btn-lg">
-              Explorar
-            </a>
+            <Link to={`/catalog`} className="btn btn-primary btn-lg">
+              Ver catálogo
+            </Link>
           </div>
         </div>
       </section>
-      <ItemListContainer />
     </>
   );
 }
